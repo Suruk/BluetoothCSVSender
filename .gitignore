@@ -1,0 +1,13 @@
+/BluetoothMobileClient/.idea/*
+BluetoothMobileClient/app/build.gradle
+BluetoothMobileClient/app/proguard-rules.pro
+/BluetoothMobileClient/app/src/androidTest/*
+BluetoothMobileClient/build.gradle
+BluetoothMobileClient/gradle.properties
+BluetoothMobileClient/gradle/*
+BluetoothMobileClient/gradlew
+BluetoothMobileClient/gradlew.bat
+BluetoothMobileClient/settings.gradle
+BluetoothServer/.idea/*
+BluetoothServer/BlueToothServer.iml
+BluetoothMobileClient/app/src/test/*

@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">AccelCSVBluetooth</string>
+    <string name="string1">Measure Time</string>
+    <string name="string2">Measure Tick</string>
+
+    <string-array name="times">
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+        <item>10</item>
+    </string-array>
+
+    <string name="min">Minutes</string>
+    <string name="sec">Seconds</string>
+
+    <string-array name="ticks">
+        <item>5</item>
+        <item>15</item>
+        <item>30</item>
+    </string-array>
+
+    <string name="butt">START</string>
+    <string name="butt2">SAVE</string>
+
+    <string name="bluestart">SEND FILE</string>
+
+    <string name="connect">CONNECT</string>
+    <string name="send">SEND</string>
+</resources>
