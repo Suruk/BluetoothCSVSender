@@ -24,6 +24,9 @@
 
     <string name="bluestart">SEND FILE</string>
 
-    <string name="connect">CONNECT</string>
-    <string name="send">SEND</string>
+    <string name="connect">SEARCH FOR DEVICES</string>
+    <string name="send">DISCONNECT</string>
+    <string name="status">Connected to:</string>
+    <string name="listConnected">Bonded Devices</string>
+    <string name="listNew">New Devices</string>
 </resources>

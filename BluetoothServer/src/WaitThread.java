@@ -8,6 +8,9 @@ import javax.microedition.io.StreamConnectionNotifier;
 
 public class WaitThread implements Runnable {
 
+    //private static final String appUUID = "686ced60-a349-11e9-b475-0800200c9a66";
+    private static final String appUUID2 = "686ced60a34911e9b4750800200c9a66";
+
     @Override
     public void run() {
         waiter();
@@ -24,14 +27,14 @@ public class WaitThread implements Runnable {
             local = LocalDevice.getLocalDevice();
             local.setDiscoverable(DiscoveryAgent.GIAC);
 
-            UUID uuid = new UUID("686ced60-a349-11e9-b475-0800200c9a66", false);
+            UUID uuid = new UUID(appUUID2, false);
             String url = "btspp://localhost:" + uuid.toString() + ";name=RemoteBluetooth";
             notifier = (StreamConnectionNotifier) Connector.open(url);
         } catch (Exception e) {
             e.printStackTrace();
             return;
         }
-        // waiting for connection
+
         while (true) {
             try {
                 System.out.println("waiting for connection...");

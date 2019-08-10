@@ -124,8 +124,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     public void txtFile (View view){
-        boolean check1 = Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
-        boolean check2 = (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) == PackageManager.PERMISSION_GRANTED;
         try {
             File root = new File(Environment.getExternalStorageDirectory(), "Saved_Results");
             if (!root.exists()) {
@@ -137,7 +135,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},PERMISSION_GRANT);
                 }
                 File file = new File(root, "Result");
-                boolean fileexists = file.exists();
                 FileWriter writer = new FileWriter(file);
                 writer.append(results.getText());
                 writer.flush();

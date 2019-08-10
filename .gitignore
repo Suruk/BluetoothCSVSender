@@ -11,3 +11,4 @@ BluetoothMobileClient/settings.gradle
 BluetoothServer/.idea/*
 BluetoothServer/BlueToothServer.iml
 BluetoothMobileClient/app/src/test/*
+BluetoothServer/out/*
