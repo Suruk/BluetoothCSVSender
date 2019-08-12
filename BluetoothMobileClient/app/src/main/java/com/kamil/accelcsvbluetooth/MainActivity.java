@@ -152,7 +152,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     public void startBluetooth (View view){
         Intent intent = new Intent(this, BluetoothSend.class);
-        //intent.putExtra(EXTRA_MESSAGE, message);
+        String data = results.getText().toString();
+        intent.putExtra("content",data);
         startActivity(intent);
     }
 

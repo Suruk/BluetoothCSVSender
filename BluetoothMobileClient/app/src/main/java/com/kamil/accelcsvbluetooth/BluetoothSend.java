@@ -25,6 +25,7 @@ import java.util.UUID;
 public class BluetoothSend extends AppCompatActivity {
 
     private static final String appUUID = "686ced60-a349-11e9-b475-0800200c9a66";
+    private static final String STATE_CONNECTED = "12";
 
     private ConnectThread connectThread;
     private ConnectedThread connectedDoneThread;
@@ -32,11 +33,21 @@ public class BluetoothSend extends AppCompatActivity {
     private TextView deviceName;
     private ArrayAdapter<String> newDeviceAdapter;
 
+    private String data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth_send);
         deviceName = findViewById(R.id.textView5);
+
+        Bundle bundle = getIntent().getExtras();
+
+        if(bundle == null){
+            data = null;
+        } else {
+            data = bundle.getString("content");
+        }
 
         newDeviceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         ArrayAdapter<String> bondedDeviceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
@@ -226,9 +237,10 @@ public class BluetoothSend extends AppCompatActivity {
         }
 
         public void run() {
-            String welcome = "Connection completed successfully";
-            byte [] buffer = welcome.getBytes();
+            byte [] buffer = STATE_CONNECTED.getBytes();
             write(buffer);
+            byte [] content = data.getBytes();
+            write(content);
         }
 
         private void write(byte[] buffer) {
