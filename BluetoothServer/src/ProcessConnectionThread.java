@@ -6,13 +6,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
 public class ProcessConnectionThread implements Runnable{
 
     private StreamConnection mConnection;
-
-    private static final String STATE_CONNECTED = "12";
+    private static final String TERMINATE_CONNECTION = "Ending Connection";
 
     ProcessConnectionThread(StreamConnection connection)
     {
@@ -30,17 +28,14 @@ public class ProcessConnectionThread implements Runnable{
                 byte [] buffer = new byte [1024];
                 int n = inputStream.read(buffer);
 
-                String result;
-                if (Arrays.equals(buffer, new byte[1024])){
+                String result = new String(buffer, 0, n, StandardCharsets.UTF_8);
+                if (result.equalsIgnoreCase(TERMINATE_CONNECTION)){
                     inputStream.close();
                     mConnection.close();
                     return;
                 } else {
-                    result = new String(buffer, 0, n, StandardCharsets.UTF_8);
-                }
-                if (STATE_CONNECTED.equals(result)){
                     System.out.println("Connection completed successfully");
-                } else {
+
                     JFrame parentFrame = new JFrame();
 
                     JFileChooser fileChooser = new JFileChooser();
@@ -57,6 +52,8 @@ public class ProcessConnectionThread implements Runnable{
                         System.out.println("Saved successfully to: " + fileToSave.getAbsolutePath());
                         FileWriter writer = new FileWriter(fileToSave);
                         writer.append(result);
+                        writer.flush();
+                        writer.close();
                     }
                 }
 

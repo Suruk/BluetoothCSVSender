@@ -25,7 +25,7 @@ import java.util.UUID;
 public class BluetoothSend extends AppCompatActivity {
 
     private static final String appUUID = "686ced60-a349-11e9-b475-0800200c9a66";
-    private static final String STATE_CONNECTED = "12";
+    private static final String TERMINATE_CONNECTION = "Ending Connection";
 
     private ConnectThread connectThread;
     private ConnectedThread connectedDoneThread;
@@ -237,8 +237,6 @@ public class BluetoothSend extends AppCompatActivity {
         }
 
         public void run() {
-            byte [] buffer = STATE_CONNECTED.getBytes();
-            write(buffer);
             byte [] content = data.getBytes();
             write(content);
         }
@@ -253,8 +251,7 @@ public class BluetoothSend extends AppCompatActivity {
 
         private void cancel() {
             try {
-                String end = "Ending Connection";
-                byte [] buffer = end.getBytes();
+                byte [] buffer = TERMINATE_CONNECTION.getBytes();
                 write(buffer);
                 mmSocket.close();
             } catch (IOException e) {
