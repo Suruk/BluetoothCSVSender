@@ -72,9 +72,8 @@ public class BluetoothSend extends AppCompatActivity {
         this.registerReceiver(receiver, filter);
 
 
-
+        //Write bonded devices to ArrayAdapter
         Set<BluetoothDevice> pairedDevices = BA.getBondedDevices();
-
         if (pairedDevices.size() > 0) {
             for (BluetoothDevice device : pairedDevices) {
                 bondedDeviceAdapter.add(device.getName() + "\n" + device.getAddress());
@@ -96,6 +95,7 @@ public class BluetoothSend extends AppCompatActivity {
         stop();
     }
 
+    //Method used by Threads to change name of device currently connected to
     private void setText (final String name){
         runOnUiThread(new Runnable() {
             @Override
@@ -112,6 +112,7 @@ public class BluetoothSend extends AppCompatActivity {
 
             BA.cancelDiscovery();
 
+            //Getting MAC address (xx-yy-zz-aa-bb-cc) and connecting to listed device
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
             pairDevice(address);
@@ -168,7 +169,7 @@ public class BluetoothSend extends AppCompatActivity {
         setText("");
     }
 
-
+    //Thread responsible for creating Bluetooth connection with server
     private class ConnectThread extends Thread {
         private final BluetoothSocket mmSocket;
         private final BluetoothDevice mmDevice;
@@ -219,6 +220,7 @@ public class BluetoothSend extends AppCompatActivity {
         }
     }
 
+    //Thread responsible for sending data
     private class ConnectedThread extends Thread {
         private final BluetoothSocket mmSocket;
         private final OutputStream mmOutStream;

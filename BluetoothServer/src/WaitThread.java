@@ -5,10 +5,10 @@ import javax.microedition.io.Connector;
 import javax.microedition.io.StreamConnection;
 import javax.microedition.io.StreamConnectionNotifier;
 
+//WaitThread is called when no devices are connected to Bluetooth server
 
 public class WaitThread implements Runnable {
 
-    //private static final String appUUID = "686ced60-a349-11e9-b475-0800200c9a66";
     private static final String appUUID2 = "686ced60a34911e9b4750800200c9a66";
 
     @Override

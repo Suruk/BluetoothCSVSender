@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     Spinner s2;
     TextView results;
 
-    private SensorManager manager;
-    private Sensor accel;
     private double ax,ay,az;
 
     private static final int PERMISSION_GRANT = 1337;
@@ -56,10 +54,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         s1.setAdapter(a1);
         s2.setAdapter(a2);
 
-        manager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        SensorManager manager = (SensorManager) getSystemService(SENSOR_SERVICE);
         assert manager != null;
-        accel = manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        manager.registerListener(this,accel,Sensor.TYPE_ACCELEROMETER);
+        Sensor accel = manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        manager.registerListener(this, accel,Sensor.TYPE_ACCELEROMETER);
     }
 
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -123,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
+    //Save data from accelerometer to txt file in external storage
     public void txtFile (View view){
         try {
             File root = new File(Environment.getExternalStorageDirectory(), "Saved_Results");

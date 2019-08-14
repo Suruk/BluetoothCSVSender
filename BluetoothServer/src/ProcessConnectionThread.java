@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
+//ProcessConnectionThread is called when BluetoothMobileClient connects with server
+
 public class ProcessConnectionThread implements Runnable{
 
     private StreamConnection mConnection;
@@ -29,10 +31,13 @@ public class ProcessConnectionThread implements Runnable{
                 int n = inputStream.read(buffer);
 
                 String result = new String(buffer, 0, n, StandardCharsets.UTF_8);
+
+                // Terminate thread when client sends TERMINATE_CONNECTION message
                 if (result.equalsIgnoreCase(TERMINATE_CONNECTION)){
                     inputStream.close();
                     mConnection.close();
                     return;
+                // Bring up the save dialog to write sent message to .txt file
                 } else {
                     System.out.println("Connection completed successfully");
 
